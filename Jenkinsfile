@@ -1,10 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs "NodeJs25" // Configura una instalación de Node.js en Jenkins
-        // Cambia el nombre de la herramienta según tu configuración en Jenkins
-    }
+  
 
     stages {
         stage('Construir Imagen Docker') {
