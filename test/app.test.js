@@ -26,14 +26,14 @@ describe('API de usuarios', () => {
   });
 
   it('Debe obtener todos los usuarios', async () => {
-    const res = await request (app).get('/users');
+    const res = await request(app).get('/users');
     expect(res.statusCode).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   });
 
   it('Debe buscar el usuario creado', async () => {
-    const res = await request (app).get('/users/${testUser.id}');
+    const res = await request(app).get(`/users/${testUser.id}`);
     expect(res.statusCode).toBe(200);
-    expect(res,body.user).toMatchObject(testUser);
+    expect(res.body.user).toMatchObject(testUser);
   });
 });
