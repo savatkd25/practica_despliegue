@@ -13,11 +13,12 @@ pipeline {
             }
         }
 
-        stage('Ejecutar tests') {
-            steps {
-                sh 'npx jest'
-            }
-        }
+       stage('Ejecutar tests') {
+    steps {
+        sh 'node node_modules/jest/bin/jest.js'
+    }
+}
+
 
         stage('Construir Imagen Docker') {
             when {
