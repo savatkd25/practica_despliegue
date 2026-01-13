@@ -3,36 +3,31 @@ pipeline {
 
     tools {
         nodejs "NodeJs25"
-        dockerTool "Dockertool" 
+        // 🚫 dockerTool eliminado
     }
 
     stages {
+
         stage('Instalar dependencias') {
             steps {
                 sh 'npm install'
             }
         }
 
-    stage('Ejecutar tests') {
+        stage('Ejecutar tests') {
             steps {
-                sh 'chmod +x ./node_modules/.bin/jest'  // Soluciona el problema de permisos
-                sh 'npm test -- --ci --runInBand'
+                sh 'node node_modules/jest/bin/jest.js'
             }
         }
 
-
- stage('Construir Imagen Docker') {
-    steps {
-        sh 'docker version'
-        sh 'docker build -t hola-mundo-node:latest .'
-    }
-}
-
+        stage('Construir Imagen Docker') {
+            steps {
+                sh 'docker version'
+                sh 'docker build -t hola-mundo-node:latest .'
+            }
+        }
 
         stage('Ejecutar Contenedor Node.js') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
             steps {
                 sh '''
                     docker stop hola-mundo-node || true
