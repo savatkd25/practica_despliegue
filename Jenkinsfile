@@ -6,7 +6,6 @@ pipeline {
     }
 
     stages {
-
         stage('Instalar dependencias') {
             steps {
                 sh 'npm install'
@@ -25,14 +24,6 @@ pipeline {
             }
         }
 
-        stage('Verificar Docker') {
-    steps {
-        sh '''
-            which docker
-            docker version
-        '''
-    }
-}
         stage('Ejecutar Contenedor Node.js') {
             steps {
                 sh '''
