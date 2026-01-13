@@ -13,11 +13,12 @@ pipeline {
             }
         }
 
-       stage('Ejecutar tests') {
-    steps {
-        sh 'node node_modules/jest/bin/jest.js'
-    }
-}
+    stage('Ejecutar tests') {
+            steps {
+                sh 'chmod +x ./node_modules/.bin/jest'  // Soluciona el problema de permisos
+                sh 'npm test -- --ci --runInBand'
+            }
+        }
 
 
         stage('Construir Imagen Docker') {
