@@ -3,7 +3,6 @@ pipeline {
 
     tools {
         nodejs "NodeJs25"
-        // 🚫 dockerTool eliminado
     }
 
     stages {
@@ -22,7 +21,6 @@ pipeline {
 
         stage('Construir Imagen Docker') {
             steps {
-                sh 'docker version'
                 sh 'docker build -t hola-mundo-node:latest .'
             }
         }
