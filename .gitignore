@@ -1,0 +1,4 @@
+#archivo para ignorar archivos y carpetas innecesarios en el repositorio Git
+
+node_modules/
+test/
